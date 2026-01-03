@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+:root {
+    --primary: #6366f1;
+    --bg: #0f172a;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text-main: #f8fafc;
+    --text-dim: #94a3b8;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+}
+
+header {
+    padding: 40px 60px 0;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    background: linear-gradient(to right, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p.subtitle {
+    color: var(--text-dim);
+    margin-top: 8px;
+}
+
+/* Contenedor de Scroll */
+.timeline-viewport {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    padding: 0 100px;
+    cursor: grab;
+    scrollbar-width: none;
+    /* Firefox */
+    position: relative;
+}
+
+.timeline-viewport:active {
+    cursor: grabbing;
+}
+
+.timeline-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+/* Chrome/Safari */
+
+/* Línea de tiempo central */
+.timeline-track {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    padding: 50px 0;
+
+    @media (height < 800px) {
+        .cite-block {
+            font-size: 0.70rem;
+        }
+
+        p {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.main-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), #ec4899);
+    z-index: 0;
+    opacity: 0.3;
+
+
+}
+
+/* Tarjetas */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 320px;
+    border-radius: 24px;
+    padding: 24px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary);
+}
+
+/* Conector (Punto en la línea) */
+.dot {
+    width: 16px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px var(--primary);
+    z-index: 1;
+}
+
+/* Imagen Reescalada */
+.img-container {
+    width: 100%;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    @media (height < 800px) {
+        height: 150px;
+    }
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Reescalado inteligente */
+    object-position: top;
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+/* Textos */
+.badge {
+    background: rgba(99, 102, 241, 0.2);
+    color: #a5b4fc;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.cite-block {
+    cite {
+        display: block;
+    }
+}
+
+.year {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 10px 0 5px;
+    display: block;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.author {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.desc {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+}
